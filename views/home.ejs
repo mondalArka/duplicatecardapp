@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>User Data</h1>
+  <button><a href="/add">Add User</a></button>      
+  <% if(message.length>0) {%>
+    <div class="alert alert-success" role="alert">
+    <%=message%>
+  </div>
+  <%}%>
+  <% if(message2.length>0) {%>
+    <div class="alert alert-danger" role="alert">
+    <%=message2%>
+  </div>
+  <%}%>
+  <% if(message3.length>0) {%>
+    <div class="alert alert-success" role="alert">
+    <%=message3%>
+  </div>
+  <%}%>
+  <% if(message4.length>0) {%>
+    <div class="alert alert-danger" role="alert">
+    <%=message4%>
+  </div>
+  <%}%>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>SL.No</th>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>City</th>
+        <th>User Type</th>
+        <th>Image</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <% if(userData.length!=0) {%>
+    <tbody>
+        <% let count=0
+        for(let data of userData){ 
+          
+          if(data.status!=0)
+          { count=1+count%>
+            
+          
+      <tr>
+        <td><%=count%></td>
+        <%var x=data._id.toString()%>
+        <%var y=x.substring(20,25)%>
+        <td><%=y%></td>
+        <td><%=data.name%></td>
+        <td><%=data.email%></td>
+        <td><%=data.phone%></td>
+        <td><%=data.city%></td>
+        <td><%=data.user_type%></td>
+        <td><img src="<%=data.image%>" alt="dd" height="50px" width="50px"></td>
+        <td><button><a href="/delete/<%=data._id%>">Delete</a></button></td>
+        <td><button><a href="/edit/<%=data._id%>">Update</a></button></td>
+        <td><button><a href="/softdelete/<%=data._id%>">Soft Delete</a></button></td>
+       
+      </tr>
+    </tbody>
+      <%
+    }} }else{%>
+            <h1>No data found</h1>
+      <%}%>
+      
+    
+  </table>
+</div>
+
+</body>
+</html>
